@@ -22,7 +22,7 @@ session_start();
                       </div>
                       <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav navbar-right">
-                          <li><a href="#">Welcome! <?php echo ' '; echo $_SESSION["name"]; echo ' ';?></a></li>                         
+                          <li><a href="home.php">Welcome! <?php echo ' '; echo $_SESSION["name"]; echo ' ';?></a></li>                         
                           <li><a href="#">Institutions</a></li>
                           <li><a href="#">Course Title</a></li>
                           <li><a href="#">Instructors</a></li>
@@ -32,7 +32,7 @@ session_start();
                       </div>
                     </div>
                   </nav>
-
+        <div class="container" style="padding-top:5%;">
           <form  action="searchData.php" method="POST">
             <h5>Course Title</h5>
             <input list="Course Title" name="course_title" style="width:250px;">
@@ -43,3 +43,6 @@ session_start();
                 </datalist>
             <br><br>
           <input type="submit" name="submit" value="Search">
+        </div>
+     </body>
+</html>

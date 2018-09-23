@@ -32,18 +32,19 @@ session_start();
                       </div>
                     </div>
                   </nav>
+
         <div class="container" style="padding-top:5%;">
           <form  action="searchData.php" method="POST">
-            <h5>Instructor</h5>
-            <input list="Instructor" name="instructor">
-              <datalist id="Instructor">
-                <option value="Khurram Afridi">
-                <option value="David Malan">
-                <option value="John Guttag">
-                <option value="Michael Cima">
-              </datalist>
+          <h5>Course No.</h5>
+          <input list="Course No." name="course_no">
+            <datalist id="Course No.">
+                <option value="6.002x">
+                <option value="6.00x">
+                <option value="3.091x">
+                <option value="CS50x">
+            </datalist>
             <br><br>
           <input type="submit" name="submit" value="Search">
         </div>
-     </body>
+        </body>
 </html>

@@ -34,16 +34,25 @@ session_start();
                   </nav>
         <div class="container" style="padding-top:5%;">
           <form  action="searchData.php" method="POST">
-            <h5>Instructor</h5>
-            <input list="Instructor" name="instructor">
-              <datalist id="Instructor">
-                <option value="Khurram Afridi">
-                <option value="David Malan">
-                <option value="John Guttag">
-                <option value="Michael Cima">
-              </datalist>
+          <h5>Launch Date Between</h5>
+          <input list="Start_Date" name="start_date">
+            <datalist id="Start_Date">
+                <option value="2012-10-09">
+                <option value="2012-09-05">
+                <option value="2012-09-26">
+                <option value="2012-10-15">
+            </datalist>
+            <br>
+            <p>To</p>
+        <input list="Last_Date" name="last_date">
+            <datalist id="Last_Date">
+                <option value="2012-10-09">
+                <option value="2012-09-05">
+                <option value="2012-09-26">
+                <option value="2012-10-15">
+            </datalist>
             <br><br>
           <input type="submit" name="submit" value="Search">
         </div>
-     </body>
+    </body>
 </html>
