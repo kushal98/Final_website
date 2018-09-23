@@ -33,7 +33,7 @@ session_start();
                     </div>
                   </nav>
         <div class="container" style="padding-top:5%;">
-          <form  action="searchData.php" method="POST">
+          <form  method="POST">
             <h5>Course Title</h5>
             <input list="Course Title" name="course_title" style="width:250px;">
                 <datalist id="Course Title">
@@ -43,6 +43,32 @@ session_start();
                 </datalist>
             <br><br>
           <input type="submit" name="submit" value="Search">
+        </div>
+        <div class="container" style="padding-top:8%;">
+          <?php
+    @$course_title=$_POST['course_title'];
+    $test_user="root";
+    $test_pass="";
+    $test_db="courses";
+    $connect = new mysqli("localhost",$test_user,$test_pass,$test_db) or die("Unable to connect");
+    if($connect){
+        echo "connected succesfully \r\n ";
+        echo "<br>";
+    }
+    $sql= "SELECT course_no,institution,course_title,launch_date,instructor FROM course_list WHERE course_title='$course_title' ";
+    $query = mysqli_query($connect,$sql);
+    if (mysqli_num_rows($query) > 0) {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($query)) {
+            echo "no: " . $row["course_no"]. " - Title: " . $row["course_title"]. 
+            " - Instructor: " . $row["instructor"]." - Launch Date: " . $row["launch_date"]. "<br>";
+        }
+    } else {
+        echo "0 results";
+    }
+
+?> 
+
         </div>
      </body>
 </html>
