@@ -40,6 +40,14 @@ session_start();
                     <option value="Introduction to Computer Science">
                     <option value="Introduction to Solid State">
                     <option value="Circuits and Electronics">
+                    <option value="Introduction to Computer Science and Programming">
+                    <option value="Quantitative Methods in Clinical Research">
+                    <option value="The Challenges of Global Poverty">
+                    <option value="The Ancient Greek Hero">
+                    <option value="Classical Mechanics">
+                    <option value="Global Architecture">
+                    <option value="Electricity and Magnetism">
+                    <option value="Justice">
                 </datalist>
             <br><br>
           <input type="submit" name="submit" value="Search">
@@ -55,13 +63,13 @@ session_start();
         echo "connected succesfully \r\n ";
         echo "<br>";
     }
-    $sql= "SELECT course_no,institution,course_title,launch_date,instructor FROM course_list WHERE course_title='$course_title' ";
+    $sql= "SELECT course_no,course_sub,launch_date,course_hour FROM course WHERE course_title='$course_title' ";
     $query = mysqli_query($connect,$sql);
     if (mysqli_num_rows($query) > 0) {
         // output data of each row
         while($row = mysqli_fetch_assoc($query)) {
-            echo "no: " . $row["course_no"]. " - Title: " . $row["course_title"]. 
-            " - Instructor: " . $row["instructor"]." - Launch Date: " . $row["launch_date"]. "<br>";
+            echo "no: " . $row["course_no"]. " - Course Subject: " . $row["course_sub"]. 
+            " - Course Hour: " . $row["course_hour"]." - Launch Date: " . $row["launch_date"]. "<br>";
         }
     } else {
         echo "0 results";
