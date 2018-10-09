@@ -33,7 +33,7 @@ session_start();
                     </div>
                   </nav>
         <div class="container" style="padding-top:5%;">
-          <form  action="searchData.php" method="POST">
+          <form method="POST">
             <h5>Instructor</h5>
             <input list="Instructor" name="instructor">
               <datalist id="Instructor">
@@ -43,7 +43,48 @@ session_start();
                 <option value="Michael Cima">
               </datalist>
             <br><br>
-          <input type="submit" name="submit" value="Search">
+            <input type="submit" name="submit" value="Search">
+        </div>
+        <div class="container" style="padding-top:8%;">
+          <?php
+    @$instructor=$_POST['instructor'];
+    $test_user="root";
+    $test_pass="";
+    $test_db="courses";
+    $connect = new mysqli("localhost",$test_user,$test_pass,$test_db) or die("Unable to connect");
+    if($connect){
+        //echo "connected succesfully \r\n ";
+        echo "<br>";
+    }
+    $sql= "SELECT c.course_no,c.course_title,c.course_sub,course_hour FROM course c,instructor i WHERE c.course_no = i.course_no and  i.instructor='$instructor' ";
+    $query = mysqli_query($connect,$sql);
+    if (mysqli_num_rows($query) > 0) {
+
+      echo '<table style="width:100%;border: 1px solid black;border-collapse: collapse;padding: 15px;text-align: left;">
+    <tr>
+    <th>Course No.</th>
+    <th>Course Title</th>
+    <th>Course Subject</th>
+    <th>Course Hour</th>
+    </tr>';
+
+            while( $row =  $query->fetch_assoc()){
+                  echo "<tr>";
+                  echo  "<td>".$row["course_no"]."</td>";
+                  echo  "<td>".$row["course_title"]."</td>";
+                  echo  "<td>".$row["course_sub"]."</td>";
+                  echo  "<td>".$row["course_hour"]."</td>";
+                  echo "</tr>";
+            }
+      
+      echo "</table>";
+    } 
+else {
+        echo "0 results";
+    }
+
+?> 
+
         </div>
      </body>
 </html>

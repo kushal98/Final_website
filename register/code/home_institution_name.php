@@ -34,7 +34,7 @@ session_start();
                   </nav>
 
         <div class="container" style="padding-top:5%;">
-          <form  action="searchData.php" method="POST">
+          <form  method="POST">
           <h5>Institution</h5>
           <input list="Institution" name="institution">
             <datalist id="Institution">

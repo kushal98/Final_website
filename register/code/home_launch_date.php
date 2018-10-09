@@ -33,7 +33,7 @@ session_start();
                     </div>
                   </nav>
         <div class="container" style="padding-top:5%;">
-          <form  action="searchData.php" method="POST">
+          <form method="POST">
           <h5>Launch Date Between</h5>
           <input list="Start_Date" name="start_date">
             <datalist id="Start_Date">
