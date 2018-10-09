@@ -42,7 +42,48 @@ session_start();
                 <option value="Harvardx">
             </datalist>
             <br><br>
-          <input type="submit" name="submit" value="Search">
+            <input type="submit" name="submit" value="Search">
         </div>
-        </body>
+        <div class="container" style="padding-top:8%;">
+          <?php
+    @$institute=$_POST['institution'];
+    $test_user="root";
+    $test_pass="";
+    $test_db="courses";
+    $connect = new mysqli("localhost",$test_user,$test_pass,$test_db) or die("Unable to connect");
+    if($connect){
+        //echo "connected succesfully \r\n ";
+        echo "<br>";
+    }
+    $sql= "SELECT c.course_no,c.course_title,c.course_sub,course_hour FROM course c,institute i WHERE c.course_no = i.course_no and  i.institution='$institute' ";
+    $query = mysqli_query($connect,$sql);
+    if (mysqli_num_rows($query) > 0) {
+
+      echo '<table style="width:100%;border: 1px solid black;border-collapse: collapse;padding: 15px;text-align: left;">
+    <tr>
+    <th>Course No.</th>
+    <th>Course Title</th>
+    <th>Course Subject</th>
+    <th>Course Hour</th>
+    </tr>';
+
+            while( $row =  $query->fetch_assoc()){
+                  echo "<tr>";
+                  echo  "<td>".$row["course_no"]."</td>";
+                  echo  "<td>".$row["course_title"]."</td>";
+                  echo  "<td>".$row["course_sub"]."</td>";
+                  echo  "<td>".$row["course_hour"]."</td>";
+                  echo "</tr>";
+            }
+      
+      echo "</table>";
+    } 
+else {
+        echo "0 results";
+    }
+
+?> 
+
+        </div>
+     </body>
 </html>
