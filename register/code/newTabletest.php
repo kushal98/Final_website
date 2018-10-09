@@ -24,4 +24,3 @@ echo "</table>";
             " - Course Hour: " . $row["course_hour"]."<br>";
         }
 
-border: 1px solid black;border-collapse: collapse;padding: 15px;text-align: left;
