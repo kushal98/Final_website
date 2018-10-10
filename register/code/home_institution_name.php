@@ -18,15 +18,14 @@ session_start();
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span> 
                         </button>
-                        <a class="navbar-brand" style="padding-top:1%;" href="#"><img src="logo.png" alt="logo" ></a>
+                        <a class="navbar-brand" style="padding-top:1%;" href="home.php"><img src="logo.png" alt="logo" ></a>
                       </div>
                       <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav navbar-right">
                           <li><a href="home.php">Welcome! <?php echo ' '; echo $_SESSION["name"]; echo ' ';?></a></li>                         
-                          <li><a href="#">Institutions</a></li>
-                          <li><a href="#">Course Title</a></li>
-                          <li><a href="#">Instructors</a></li>
-                          <li><a href="login.php">LogOut</a></li>
+                          <li><a href="institutions.php">Institutions</a></li>
+                          <li><a href="instructor.php">Instructors</a></li>
+                          <li><a href="login.php">Logout</a></li>
                           </li>
                         </ul>
                       </div>

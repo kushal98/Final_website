@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 ?>
@@ -30,28 +31,6 @@ session_start();
                         </ul>
                       </div>
                     </div>
-                  </nav>
-        <div class="container" style="padding-top:5%;">
-          <form method="POST">
-          <h5>Launch Date Between</h5>
-          <input list="Start_Date" name="start_date">
-            <datalist id="Start_Date">
-                <option value="2012-10-09">
-                <option value="2012-09-05">
-                <option value="2012-09-26">
-                <option value="2012-10-15">
-            </datalist>
-            <br>
-            <p>To</p>
-        <input list="Last_Date" name="last_date">
-            <datalist id="Last_Date">
-                <option value="2012-10-09">
-                <option value="2012-09-05">
-                <option value="2012-09-26">
-                <option value="2012-10-15">
-            </datalist>
-            <br><br>
-          <input type="submit" name="submit" value="Search">
-        </div>
-    </body>
+                  </nav>	
+        </body>
 </html>
