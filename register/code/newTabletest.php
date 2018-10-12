@@ -24,3 +24,14 @@ echo "</table>";
             " - Course Hour: " . $row["course_hour"]."<br>";
         }
 
+import cv2
+
+# input image dimensions
+img_rows, img_cols = 128,128
+
+for file in list:
+    base = os.path.basename("../input/" + file)
+    fileName = os.path.splitext(base)[0]
+    im = cv2.imread("../input/" + file)   
+    img = cv2.resize(im,(img_rows,img_cols))
+    cv2.imwrite("../input/" + fileName +".jpeg",img)

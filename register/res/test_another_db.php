@@ -65,23 +65,19 @@ session_start();
         </div>
         <div class="container" style="padding-top:8%;">
           <?php
-    @$course_title=$_POST['course_title'];
+    @$image_id=$_POST['image_id'];
     $test_user="root";
     $test_pass="";
-    $test_db="courses";
+    $test_db="test";
     $connect = new mysqli("localhost",$test_user,$test_pass,$test_db) or die("Unable to connect");
-    $sql= "SELECT course_no,course_sub,launch_date,course_hour FROM course WHERE course_title='$course_title' ";
+    $sql= "SELECT image_ FROM image WHERE image_id='$image_id' ";
     $query = mysqli_query($connect,$sql);
-    if (mysqli_num_rows($query) > 0) {
-        // output data of each row
-        while($row = mysqli_fetch_assoc($query)) {
-            echo "no: " . $row["course_no"]. " - Course Subject: " . $row["course_sub"]. 
-            " - Course Hour: " . $row["course_hour"]." - Launch Date: " . $row["launch_date"]. "<br>";
-        }
-    }
+    $row = mysqli_fetch_array($query);
+    //header("Content-type: image/jpg");
+    echo $row['image_'];
+        
+    
 
+    ////$sth = $db->query($sql);
+//$result=mysqli_fetch_array($sth);
 ?> 
-
-        </div>
-     </body>
-</html>
