@@ -11,7 +11,7 @@ session_start();
     </head>
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
     
-            <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
                     <div class="container-fluid">
                       <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -29,10 +29,12 @@ session_start();
                               <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                               <li><a href="home_instructor_name.php">Based On the Instructors Name</a></li>
-                              <li><a href="home_course_title.php">Based On the Course Title</a></li>
-                              <li><a href="home_course_no.php">Based on the Course No.</a></li>
+                              <li><a href="home_course_title.php">Based On the Course Title</a></li>                      
+                              <li><a href="home_course_sub.php">Based on the Course Subject</a></li>
                               <li><a href="home_launch_date.php">Based on the Launch date</a></li>
                               <li><a href="home_institution_name.php">Based on the Institution</a></li>
+                              <li><a href="home_add_instructor.php">Add Instructor</a></li>
+                              <li><a href="check_inst_rating.php">Check Instructor Rating</a></li>
                               </ul>
                           </li>
                           <li><a href="institutions.php">Institutions</a></li>

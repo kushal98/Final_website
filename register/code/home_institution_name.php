@@ -29,9 +29,12 @@ session_start();
                               <ul class="dropdown-menu">
                               <li><a href="home_instructor_name.php">Based On the Instructors Name</a></li>
                               <li><a href="home_course_title.php">Based On the Course Title</a></li>
-                              <li><a href="home_course_no.php">Based on the Course No.</a></li>
+                     
+                              <li><a href="home_course_sub.php">Based on the Course Subject</a></li>
                               <li><a href="home_launch_date.php">Based on the Launch date</a></li>
                               <li><a href="home_institution_name.php">Based on the Institution</a></li>
+                              <li><a href="home_add_instructor.php">Add Instructor</a></li>
+                              <li><a href="check_inst_rating.php">Check Instructor Rating</a></li>
                               </ul>
                           </li>
                           <li><a href="institutions.php">Institutions</a></li>
@@ -48,8 +51,9 @@ session_start();
           <h5>Institution</h5>
           <input list="Institution" name="institution">
             <datalist id="Institution">
-                <option value="MITx">
-                <option value="Harvardx">
+                <option value="Harvard University">
+                <option value="MIT">
+                <option value="Stanford University">
             </datalist>
             <br><br>
             <input type="submit" name="submit" value="Search">
@@ -65,7 +69,7 @@ session_start();
         //echo "connected succesfully \r\n ";
         echo "<br>";
     }
-    $sql= "SELECT c.course_no,c.course_title,c.course_sub,course_hour FROM course c,institute i WHERE c.course_no = i.course_no and  i.institution='$institute' ";
+    $sql= "SELECT c.course_no,c.course_title,c.course_hour,c.course_rating FROM course c,institution i , offered_by o WHERE c.course_no = o.course_no and o.institution = i.inst_id and  i.inst_name='$institute' ";
     $query = mysqli_query($connect,$sql);
     if (mysqli_num_rows($query) > 0) {
 
@@ -73,16 +77,16 @@ session_start();
     <tr>
     <th>Course No.</th>
     <th>Course Title</th>
-    <th>Course Subject</th>
     <th>Course Hour</th>
+    <th>Course Rating</th>
     </tr>';
 
             while( $row =  $query->fetch_assoc()){
                   echo "<tr>";
                   echo  "<td>".$row["course_no"]."</td>";
                   echo  "<td>".$row["course_title"]."</td>";
-                  echo  "<td>".$row["course_sub"]."</td>";
                   echo  "<td>".$row["course_hour"]."</td>";
+                  echo  "<td>".$row["course_rating"]."</td>";
                   echo "</tr>";
             }
       

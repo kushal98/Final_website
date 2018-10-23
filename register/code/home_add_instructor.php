@@ -29,7 +29,7 @@ session_start();
                               <ul class="dropdown-menu">
                               <li><a href="home_instructor_name.php">Based On the Instructors Name</a></li>
                               <li><a href="home_course_title.php">Based On the Course Title</a></li>
-                             
+
                               <li><a href="home_course_sub.php">Based on the Course Subject</a></li>
                               <li><a href="home_launch_date.php">Based on the Launch date</a></li>
                               <li><a href="home_institution_name.php">Based on the Institution</a></li>
@@ -45,47 +45,40 @@ session_start();
                       </div>
                     </div>
                   </nav>
-          <br>
-          <br>
-          <br>
-          <br>
-          <div class="container">
-          <h3>Find with multiple criteria MOOC and Free Online Courses from 
-              Top Universities in a wide range of categories and subjects.</h3>
-          </div>
-            
-		
-			<div class="container" style="padding-top:5%;">
-				<h3>Find MOOCs By - </h3>
-        <ul>
-        <li><a href="home_instructor_name.php"><h4>Based On the Instructors Name</h4></a></li>
-        <li><a href="home_course_title.php"><h4>Based On the Course Title</h4></a></li>
-        <li><a href="home_course_sub.php"><h4>Based on the Course Subject</h4></a></li>
-        <li><a href="home_launch_date.php"><h4>Based on the Launch date</h4></a></li>
-        <li><a href="home_institution_name.php"><h4>Based on the Institution</h4></a></li>
-        </ul>
-			</div>
 
-      <div class="container" style="padding-top:5%;">
-				<h3>What is A MOOC? </h3>
-        <ul>
-        <li><h4>MOOC stands for a Massive Open Online Course.</h4></li>
-        <li><h4>It is an online course aimed at large-scale participation and open (free) access via the internet.</h4></li>
-        <li><h4>They are similar to university courses, but do not tend to offer academic credit.</h4></li>
-        <li><h4>A number of web-based platforms (providers Aka initiatives) supported by top universities and colleges offer MOOCs in a wide range of subjects.</h4></li>
-        </ul>
-			</div>
-	
-      <div class="container" style="padding-top:5%;">
-				<h3>How to Be a Successful MOOC Student</h3>
-        <p><h4>MOOCs – Massive Open Online Courses – enable students around the world to take university courses online. This guide, by the instructors of edX’s most successful MOOC in 2013-2014, Principles of Written English (based on both enrollments and rate of completion), advises current and future students how to get the most out of their online study, covering areas such as what types of courses are offered and who offers them, what resources students need, how to register, how to work effectively with other students, how to interact with professors and staff, and how to handle assignments. This second edition offers a new chapter on how to stay motivated. This book is suitable for both native and non-native speakers of English, and is applicable to MOOC classes on any subject (and indeed, for just about any type of online study).
-Latest Tweets
-</h4></p>
+        <div class="container" style="padding-top:5%;">
+          <form  method="POST">
+          <h5>Instructor ID</h5>
+          <input list="Instructor ID" name="instructor_id">
+          <h5>Instructor Name</h5>
+          <input list="Instructor Name" name="instructor_name">
+          <h5>Instructor rating</h5>
+          <input list="Instructor Rating" name="inst_rating">
+            <br><br>
+          <input type="submit" name="submit" value="Add">
+        </div>
 
-<br>
-          <br>
-          <br>
-			</div>
+        <div class="container" style="padding-top:8%;">
+          <?php
+    @$inst_id=$_POST['instructor_id'];
+    @$inst_name=$_POST['instructor_name'];
+    @$inst_rating=$_POST['inst_rating'];
+    $test_user="root";
+    $test_pass="";
+    $test_db="courses";
+    $connect = new mysqli("localhost",$test_user,$test_pass,$test_db) or die("Unable to connect");
+    $sql= "insert into instructor values('$inst_id','$inst_name','$inst_rating')";
+    $query = mysqli_query($connect,$sql);
+    /*if(mysqli_num_rows($query) >= 1 ){
+        echo "Course Added succesfully";
+    }
+    else{
+        echo "Unable to add the course";
+        
+    }*/
 
-  </body>
+?> 
+
+        </div>
+     </body>
 </html>

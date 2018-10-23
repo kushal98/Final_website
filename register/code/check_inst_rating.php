@@ -29,9 +29,12 @@ session_start();
                               <ul class="dropdown-menu">
                               <li><a href="home_instructor_name.php">Based On the Instructors Name</a></li>
                               <li><a href="home_course_title.php">Based On the Course Title</a></li>
-                              <li><a href="home_course_no.php">Based on the Course No.</a></li>
+                          
+                              <li><a href="home_course_sub.php">Based on the Course Subject</a></li>
                               <li><a href="home_launch_date.php">Based on the Launch date</a></li>
                               <li><a href="home_institution_name.php">Based on the Institution</a></li>
+                              <li><a href="home_add_instructor.php">Add Instructor</a></li>
+                              <li><a href="check_inst_rating.php">Check Instructor Rating</a></li>
                               </ul>
                           </li>
                           <li><a href="institutions.php">Institutions</a></li>
@@ -45,16 +48,68 @@ session_start();
 
         <div class="container" style="padding-top:5%;">
           <form  method="POST">
-          <h5>Course No.</h5>
-          <input list="Course No." name="course_no">
-            <datalist id="Course No.">
-                <option value="6.002x">
-                <option value="6.00x">
-                <option value="3.091x">
-                <option value="CS50x">
+          <h5>Instructor Name</h5>
+          <input list="Instructor_name" name="inst_name">
+            <datalist id="Instructor_name">
+                <option value="Khurram Afridi">
+                <option value="Marcello Pagano">
+                <option value="Esther Duflo">
+                <option value="Abhijit Banerjee">
+                <option value="Walter Lewin">
+                <option value="John Belcher">
+                <option value="Isaac Chuang">
+                <option value="Michael Sandel">
+                <option value="Eric Lander">
+                <option value="Graham Walker">
+                <option value="Brian White">
+                <option value="Eric Grimson">
+                <option value="Greg Nagy">
+                <option value="Simona Socrate">
+                <option value="Alexie Kolpak">
+                <option value="Aaron Bernstein">
+                <option value="Jack Spengler">
             </datalist>
             <br><br>
-          <input type="submit" name="submit" value="Search">
+            <input type="submit" name="submit" value="Search">
         </div>
-        </body>
+        <div class="container" style="padding-top:8%;">
+          <?php
+    @$inst_name=$_POST['inst_name'];
+    $test_user="root";
+    $test_pass="";
+    $test_db="courses";
+    $connect = new mysqli("localhost",$test_user,$test_pass,$test_db) or die("Unable to connect");
+    if($connect){
+        //echo "connected succesfully \r\n ";
+        echo "<br>";
+    }
+    $sql= "SELECT i.instructor_id ,i.instructor_name , i.inst_rating FROM instructor i  WHERE i.instructor_name ='$inst_name' ";
+    $query = mysqli_query($connect,$sql);
+    if (mysqli_num_rows($query) > 0) {
+
+      echo '<table style="width:100%;border: 1px solid black;border-collapse: collapse;padding: 15px;text-align: left;">
+    <tr>
+    <th>Instructor ID</th>
+    <th>Instructor Name</th>
+    <th>Instructor Rating</th>
+    </tr>';
+
+            while( $row =  $query->fetch_assoc()){
+                  echo "<tr>";
+                  echo  "<td>".$row["instructor_id"]."</td>";
+                  echo  "<td>".$row["instructor_name"]."</td>";
+                  echo  "<td>".$row["inst_rating"]."</td>";
+                  echo "</tr>";
+            }
+      
+      echo "</table>";
+    } 
+else {
+        echo "0 results";
+    }
+
+?> 
+
+        </div>
+     </body>
 </html>

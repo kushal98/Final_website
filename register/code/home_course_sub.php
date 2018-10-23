@@ -29,7 +29,6 @@ session_start();
                               <ul class="dropdown-menu">
                               <li><a href="home_instructor_name.php">Based On the Instructors Name</a></li>
                               <li><a href="home_course_title.php">Based On the Course Title</a></li>
-                             
                               <li><a href="home_course_sub.php">Based on the Course Subject</a></li>
                               <li><a href="home_launch_date.php">Based on the Launch date</a></li>
                               <li><a href="home_institution_name.php">Based on the Institution</a></li>
@@ -45,47 +44,68 @@ session_start();
                       </div>
                     </div>
                   </nav>
-          <br>
-          <br>
-          <br>
-          <br>
-          <div class="container">
-          <h3>Find with multiple criteria MOOC and Free Online Courses from 
-              Top Universities in a wide range of categories and subjects.</h3>
-          </div>
-            
-		
-			<div class="container" style="padding-top:5%;">
-				<h3>Find MOOCs By - </h3>
-        <ul>
-        <li><a href="home_instructor_name.php"><h4>Based On the Instructors Name</h4></a></li>
-        <li><a href="home_course_title.php"><h4>Based On the Course Title</h4></a></li>
-        <li><a href="home_course_sub.php"><h4>Based on the Course Subject</h4></a></li>
-        <li><a href="home_launch_date.php"><h4>Based on the Launch date</h4></a></li>
-        <li><a href="home_institution_name.php"><h4>Based on the Institution</h4></a></li>
-        </ul>
-			</div>
 
-      <div class="container" style="padding-top:5%;">
-				<h3>What is A MOOC? </h3>
-        <ul>
-        <li><h4>MOOC stands for a Massive Open Online Course.</h4></li>
-        <li><h4>It is an online course aimed at large-scale participation and open (free) access via the internet.</h4></li>
-        <li><h4>They are similar to university courses, but do not tend to offer academic credit.</h4></li>
-        <li><h4>A number of web-based platforms (providers Aka initiatives) supported by top universities and colleges offer MOOCs in a wide range of subjects.</h4></li>
-        </ul>
-			</div>
-	
-      <div class="container" style="padding-top:5%;">
-				<h3>How to Be a Successful MOOC Student</h3>
-        <p><h4>MOOCs – Massive Open Online Courses – enable students around the world to take university courses online. This guide, by the instructors of edX’s most successful MOOC in 2013-2014, Principles of Written English (based on both enrollments and rate of completion), advises current and future students how to get the most out of their online study, covering areas such as what types of courses are offered and who offers them, what resources students need, how to register, how to work effectively with other students, how to interact with professors and staff, and how to handle assignments. This second edition offers a new chapter on how to stay motivated. This book is suitable for both native and non-native speakers of English, and is applicable to MOOC classes on any subject (and indeed, for just about any type of online study).
-Latest Tweets
-</h4></p>
+        <div class="container" style="padding-top:5%;">
+          <form  method="POST">
+          <h5>Course Subject</h5>
+          <input list="Course_Subject" name="course_sub">
+            <datalist id="Course_Subject">
+                <option value="Government">
+                <option value="Health">
+                <option value="Engineering">
+                <option value="Mathematics">
+                <option value="Science">
+                <option value="Technology">
+                <option value="Design">
+                <option value="Education">
+                <option value="Humanitites">
+                <option value="History">
+                <option value="Religion">
+                <option value="Computer Science">
+            </datalist>
+            <br><br>
+            <input type="submit" name="submit" value="Search">
+        </div>
+        <div class="container" style="padding-top:8%;">
+          <?php
+    @$sub=$_POST['course_sub'];
+    $test_user="root";
+    $test_pass="";
+    $test_db="courses";
+    $connect = new mysqli("localhost",$test_user,$test_pass,$test_db) or die("Unable to connect");
+    if($connect){
+        //echo "connected succesfully \r\n ";
+        echo "<br>";
+    }
+    $sql= "SELECT c.course_no,c.course_title,c.course_hour,c.course_rating FROM course c,course_subject cs WHERE c.course_no = cs.course_no and cs.course_sub ='$sub' ";
+    $query = mysqli_query($connect,$sql);
+    if (mysqli_num_rows($query) > 0) {
 
-<br>
-          <br>
-          <br>
-			</div>
+      echo '<table style="width:100%;border: 1px solid black;border-collapse: collapse;padding: 15px;text-align: left;">
+    <tr>
+    <th>Course No.</th>
+    <th>Course Title</th>
+    <th>Course Hour</th>
+    <th>Course Rating</th>
+    </tr>';
 
-  </body>
+            while( $row =  $query->fetch_assoc()){
+                  echo "<tr>";
+                  echo  "<td>".$row["course_no"]."</td>";
+                  echo  "<td>".$row["course_title"]."</td>";
+                  echo  "<td>".$row["course_hour"]."</td>";
+                  echo  "<td>".$row["course_rating"]."</td>";
+                  echo "</tr>";
+            }
+      
+      echo "</table>";
+    } 
+else {
+        echo "0 results";
+    }
+
+?> 
+
+        </div>
+     </body>
 </html>

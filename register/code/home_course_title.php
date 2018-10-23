@@ -28,10 +28,12 @@ session_start();
                               <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                               <li><a href="home_instructor_name.php">Based On the Instructors Name</a></li>
-                              <li><a href="home_course_title.php">Based On the Course Title</a></li>
-                              <li><a href="home_course_no.php">Based on the Course No.</a></li>
+                              <li><a href="home_course_title.php">Based On the Course Title</a></li>                      
+                              <li><a href="home_course_sub.php">Based on the Course Subject</a></li>
                               <li><a href="home_launch_date.php">Based on the Launch date</a></li>
                               <li><a href="home_institution_name.php">Based on the Institution</a></li>
+                              <li><a href="home_add_instructor.php">Add Instructor</a></li>
+                              <li><a href="check_inst_rating.php">Check Instructor Rating</a></li>
                               </ul>
                           </li>
                           <li><a href="institutions.php">Institutions</a></li>
@@ -45,7 +47,7 @@ session_start();
                   
         <div class="container" style="padding-top:5%;">
           <form  method="POST">
-            <h3>Course Title</h3>
+            <h5>Course Title</h5>
             <input style="height:30px;width: 400px;" list="Course Title" name="course_title" style="width:250px;">
                 <datalist id="Course Title">
                     <option value="Introduction to Computer Science">
@@ -61,23 +63,46 @@ session_start();
                     <option value="Justice">
                 </datalist>
             <br><br>
-          <h4><input style="height:25px;" type="submit" name="submit" value="Search"></h4>
+          <input style="height:25px;" type="submit" name="submit" value="Search">
         </div>
         <div class="container" style="padding-top:8%;">
-          <?php
-    @$course_title=$_POST['course_title'];
+        <?php
+    @$title=$_POST['course_title'];
     $test_user="root";
     $test_pass="";
     $test_db="courses";
     $connect = new mysqli("localhost",$test_user,$test_pass,$test_db) or die("Unable to connect");
-    $sql= "SELECT course_no,course_sub,launch_date,course_hour FROM course WHERE course_title='$course_title' ";
+    if($connect){
+        //echo "connected succesfully \r\n ";
+        echo "<br>";
+    }
+    $sql= "SELECT i.inst_name,c.course_no,c.course_title,c.course_hour,c.course_rating FROM course c,offered_by o ,institution i WHERE c.course_title = '$title' and o.course_no = c.course_no and o.institution = i.inst_id ";
     $query = mysqli_query($connect,$sql);
     if (mysqli_num_rows($query) > 0) {
-        // output data of each row
-        while($row = mysqli_fetch_assoc($query)) {
-            echo "no: " . $row["course_no"]. " - Course Subject: " . $row["course_sub"]. 
-            " - Course Hour: " . $row["course_hour"]." - Launch Date: " . $row["launch_date"]. "<br>";
-        }
+
+      echo '<table style="width:100%;border: 1px solid black;border-collapse: collapse;padding: 15px;text-align: left;">
+    <tr>
+    <th>Institution Name</th>
+    <th>Course No.</th>
+    <th>Course Title</th>
+    <th>Course Hour</th>
+    <th>Course Rating</th>
+    </tr>';
+
+            while( $row =  $query->fetch_assoc()){
+                  echo "<tr>";
+                  echo  "<td>".$row["inst_name"]."</td>"; 
+                  echo  "<td>".$row["course_no"]."</td>";
+                  echo  "<td>".$row["course_title"]."</td>";
+                  echo  "<td>".$row["course_hour"]."</td>";
+                  echo  "<td>".$row["course_rating"]."</td>";
+                  echo "</tr>";
+            }
+      
+      echo "</table>";
+    } 
+else {
+        echo "0 results";
     }
 
 ?> 
