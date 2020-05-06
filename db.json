@@ -1,4 +1,8 @@
 {
-   "name":"admin",
-   "pass":"123"
+   "login" :[ 
+         {
+            "name":"admin",
+            "pass":"123"
+         }
+      ]
 }
